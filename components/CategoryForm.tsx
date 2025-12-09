@@ -1,21 +1,3 @@
-#!/bin/bash
-
-# COLOR CODES
-GREEN='\033[0;32m'
-BLUE='\033[0;34m'
-YELLOW='\033[1;33m'
-NC='\033[0m' # No Color
-
-echo -e "${BLUE}🚀 Creating CategoryForm Component...${NC}\n"
-
-BASE_DIR="/Users/anjana/hardware-shop"
-
-# ============================================================================
-# CATEGORYFORM COMPONENT
-# ============================================================================
-mkdir -p "$BASE_DIR/components"
-
-cat > "$BASE_DIR/components/CategoryForm.tsx" << 'EOF'
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -301,50 +283,3 @@ export default function CategoryForm({ initialData, isEditing = false }: Categor
     </div>
   )
 }
-EOF
-
-echo -e "${GREEN}✅ Created: components/CategoryForm.tsx${NC}"
-
-# ============================================================================
-# SUMMARY
-# ============================================================================
-echo ""
-echo -e "${BLUE}════════════════════════════════════════════════════════${NC}"
-echo -e "${GREEN}✅ CATEGORYFORM COMPONENT CREATED SUCCESSFULLY!${NC}"
-echo -e "${BLUE}════════════════════════════════════════════════════════${NC}"
-echo ""
-echo -e "${GREEN}📄 Created File:${NC}"
-echo "  ✅ components/CategoryForm.tsx"
-echo ""
-echo -e "${YELLOW}✨ Features Included:${NC}"
-echo "  ✓ React Hook Form integration"
-echo "  ✓ Zod validation"
-echo "  ✓ Create and Edit modes"
-echo "  ✓ Real-time error handling"
-echo "  ✓ Field-level error messages"
-echo "  ✓ Success feedback"
-echo "  ✓ Loading states"
-echo "  ✓ Disabled states during submission"
-echo "  ✓ Professional UI with Tailwind"
-echo "  ✓ Icons from lucide-react"
-echo "  ✓ Helper text and tips"
-echo "  ✓ Form validation with feedback"
-echo "  ✓ Auto-redirect on success"
-echo ""
-echo -e "${YELLOW}📝 How to Use:${NC}"
-echo "  1. Import in create page:"
-echo "     import CategoryForm from '@/components/CategoryForm'"
-echo ""
-echo "  2. Create page:"
-echo "     <CategoryForm />"
-echo ""
-echo "  3. Edit page:"
-echo "     <CategoryForm initialData={category} isEditing={true} />"
-echo ""
-echo -e "${YELLOW}🚀 Next Steps:${NC}"
-echo "  1. cd /Users/anjana/hardware-shop"
-echo "  2. npm run type-check"
-echo "  3. npm run dev"
-echo ""
-echo -e "${GREEN}✨ ComponentForm is ready to use!${NC}"
-echo ""
