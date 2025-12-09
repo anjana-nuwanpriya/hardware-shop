@@ -94,7 +94,7 @@ export default function CategoryForm({ initialData, isEditing = false }: Categor
 
       // Redirect after 1 second
       setTimeout(() => {
-        router.push('/app/masters/categories')
+        router.push('/masters/categories')
         router.refresh()
       }, 1000)
     } catch (err) {
@@ -109,7 +109,7 @@ export default function CategoryForm({ initialData, isEditing = false }: Categor
       {/* Breadcrumb / Back Link */}
       <div className="flex items-center gap-2 mb-6">
         <Link
-          href="/app/masters/categories"
+          href="/masters/categories"
           className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-900 transition font-medium"
         >
           <ArrowLeft size={20} />
@@ -263,7 +263,7 @@ export default function CategoryForm({ initialData, isEditing = false }: Categor
             </button>
 
             <Link
-              href="/app/masters/categories"
+              href="/masters/categories"
               className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium border-2 border-gray-300 text-gray-700 hover:bg-gray-50 transition ${
                 isLoading || success ? 'opacity-50 cursor-not-allowed' : ''
               }`}

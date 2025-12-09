@@ -91,7 +91,7 @@ export default function CustomersPage() {
           <p className="text-gray-600 mt-1">Manage your customer database</p>
         </div>
         <Link
-          href="/app/masters/customers/create"
+          href="/masters/customers/create"
           className="bg-blue-600 text-white px-4 py-3 rounded-lg flex items-center gap-2 hover:bg-blue-700 transition font-medium"
         >
           <Plus size={20} /> Add Customer
@@ -136,7 +136,7 @@ export default function CustomersPage() {
             </p>
             {!searchTerm && (
               <Link
-                href="/app/masters/customers/create"
+                href="/masters/customers/create"
                 className="text-blue-600 hover:text-blue-900 mt-2 inline-block"
               >
                 Add the first customer →
@@ -187,7 +187,7 @@ export default function CustomersPage() {
                   </td>
                   <td className="px-6 py-4 flex gap-2">
                     <Link
-                      href={`/app/masters/customers/${customer.id}/edit`}
+                      href={`/masters/customers/${customer.id}/edit`}
                       className="text-blue-600 hover:text-blue-900 hover:bg-blue-50 px-3 py-1 rounded transition flex items-center gap-1"
                     >
                       <Edit2 size={16} /> Edit

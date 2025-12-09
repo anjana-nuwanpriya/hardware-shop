@@ -59,7 +59,7 @@ export default function EditItemPage() {
 
       const result = await res.json()
       if (result.success) {
-        router.push('/app/masters/items')
+        router.push('/masters/items')
         router.refresh()
       } else {
         setError(result.error || 'An error occurred')
@@ -75,7 +75,7 @@ export default function EditItemPage() {
 
   return (
     <div className="space-y-6">
-      <Link href="/app/masters/items" className="flex items-center gap-2 text-blue-600 hover:text-blue-900">
+      <Link href="/masters/items" className="flex items-center gap-2 text-blue-600 hover:text-blue-900">
         <ArrowLeft size={20} /> Back
       </Link>
 
@@ -137,7 +137,7 @@ export default function EditItemPage() {
             <button type="submit" disabled={isSaving} className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50">
               {isSaving ? 'Saving...' : 'Save'}
             </button>
-            <Link href="/app/masters/items" className="border border-gray-300 px-6 py-2 rounded-lg hover:bg-gray-50">Cancel</Link>
+            <Link href="/masters/items" className="border border-gray-300 px-6 py-2 rounded-lg hover:bg-gray-50">Cancel</Link>
           </div>
         </form>
       </div>

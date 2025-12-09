@@ -54,7 +54,7 @@ export default function CreateItemPage() {
         return
       }
 
-      router.push('/app/masters/items')
+      router.push('/masters/items')
       router.refresh()
     } catch (err) {
       setError('An error occurred. Please try again.')
@@ -70,7 +70,7 @@ export default function CreateItemPage() {
   return (
     <div className="space-y-6">
       <Link
-        href="/app/masters/items"
+        href="/masters/items"
         className="flex items-center gap-2 text-blue-600 hover:text-blue-900"
       >
         <ArrowLeft size={20} /> Back
@@ -192,7 +192,7 @@ export default function CreateItemPage() {
               {isLoading ? 'Creating...' : 'Create Item'}
             </button>
             <Link
-              href="/app/masters/items"
+              href="/masters/items"
               className="border border-gray-300 px-6 py-2 rounded-lg hover:bg-gray-50 font-medium"
             >
               Cancel

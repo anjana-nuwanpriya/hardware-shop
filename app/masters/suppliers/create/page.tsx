@@ -35,7 +35,7 @@ export default function CreateSupplierPage() {
         return
       }
 
-      router.push('/app/masters/suppliers')
+      router.push('/masters/suppliers')
       router.refresh()
     } catch (err) {
       setError('An error occurred. Please try again.')
@@ -47,7 +47,7 @@ export default function CreateSupplierPage() {
   return (
     <div className="space-y-6">
       <Link
-        href="/app/masters/suppliers"
+        href="/masters/suppliers"
         className="flex items-center gap-2 text-blue-600 hover:text-blue-900"
       >
         <ArrowLeft size={20} /> Back
@@ -170,7 +170,7 @@ export default function CreateSupplierPage() {
               {isLoading ? 'Creating...' : 'Create Supplier'}
             </button>
             <Link
-              href="/app/masters/suppliers"
+              href="/masters/suppliers"
               className="border border-gray-300 px-6 py-2 rounded-lg hover:bg-gray-50 font-medium"
             >
               Cancel

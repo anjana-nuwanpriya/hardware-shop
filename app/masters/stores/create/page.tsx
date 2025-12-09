@@ -35,7 +35,7 @@ export default function CreateStorePage() {
         return
       }
 
-      router.push('/app/masters/stores')
+      router.push('/masters/stores')
       router.refresh()
     } catch (err) {
       setError('An error occurred. Please try again.')
@@ -47,7 +47,7 @@ export default function CreateStorePage() {
   return (
     <div className="space-y-6">
       <Link
-        href="/app/masters/stores"
+        href="/masters/stores"
         className="flex items-center gap-2 text-blue-600 hover:text-blue-900"
       >
         <ArrowLeft size={20} /> Back
@@ -135,7 +135,7 @@ export default function CreateStorePage() {
               {isLoading ? 'Creating...' : 'Create Store'}
             </button>
             <Link
-              href="/app/masters/stores"
+              href="/masters/stores"
               className="border border-gray-300 px-6 py-2 rounded-lg hover:bg-gray-50 font-medium"
             >
               Cancel

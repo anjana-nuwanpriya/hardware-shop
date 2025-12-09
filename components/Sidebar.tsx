@@ -1,141 +1,195 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
+import { useState } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import {
+  Menu,
+  X,
   LayoutDashboard,
+  Package,
   Users,
   ShoppingCart,
-  Package,
-  BarChart3,
+  DollarSign,
+  Warehouse,
+  FileText,
   Settings,
-  LogOut,
-  ChevronLeft,
+  ChevronDown,
+  Home,
+  Layers,
+  TrendingUp,
+  Truck,
 } from 'lucide-react'
 
-interface SidebarProps {
-  isOpen?: boolean
-  onToggle?: () => void
-}
-
-const menuItems = [
-  {
-    section: 'Main',
-    items: [
-      { icon: LayoutDashboard, label: 'Dashboard', href: '/app/dashboard' },
-    ],
-  },
-  {
-    section: 'Masters',
-    items: [
-      { icon: Users, label: 'Suppliers', href: '/app/masters/suppliers' },
-      { icon: Users, label: 'Customers', href: '/app/masters/customers' },
-      { icon: Package, label: 'Items', href: '/app/masters/items' },
-    ],
-  },
-  {
-    section: 'Purchase',
-    items: [
-      { icon: ShoppingCart, label: 'Purchase Orders', href: '/app/purchase/orders' },
-      { icon: ShoppingCart, label: 'GRN', href: '/app/purchase/grn' },
-      { icon: ShoppingCart, label: 'Payments', href: '/app/purchase/payments' },
-    ],
-  },
-  {
-    section: 'Sales',
-    items: [
-      { icon: ShoppingCart, label: 'Sales Retail', href: '/app/sales/retail' },
-      { icon: ShoppingCart, label: 'Sales Wholesale', href: '/app/sales/wholesale' },
-      { icon: ShoppingCart, label: 'Payments', href: '/app/sales/payments' },
-    ],
-  },
-  {
-    section: 'Stock',
-    items: [
-      { icon: Package, label: 'Transactions', href: '/app/stock/transactions' },
-      { icon: Package, label: 'Adjustments', href: '/app/stock/adjustments' },
-    ],
-  },
-  {
-    section: 'Reports',
-    items: [
-      { icon: BarChart3, label: 'Sales Report', href: '/app/reports/sales' },
-      { icon: BarChart3, label: 'Receivables', href: '/app/reports/receivables' },
-      { icon: BarChart3, label: 'Payables', href: '/app/reports/payables' },
-    ],
-  },
-]
-
-export default function Sidebar({ isOpen = true, onToggle }: SidebarProps) {
+export default function Sidebar() {
+  const [isOpen, setIsOpen] = useState(true)
+  const [expandedMenu, setExpandedMenu] = useState<string | null>('masters')
   const pathname = usePathname()
+
+  const isActive = (path: string) => pathname.includes(path)
+
+  const menuItems = [
+    {
+      icon: LayoutDashboard,
+      label: 'Dashboard',
+      href: '/app/dashboard',
+      submenu: [],
+    },
+    {
+      icon: Layers,
+      label: 'Masters',
+      submenu: [
+        { label: 'Categories', href: '/masters/categories' },
+        { label: 'Suppliers', href: '/masters/suppliers' },
+        { label: 'Customers', href: '/masters/customers' },
+        { label: 'Items', href: '/masters/items' },
+        { label: 'Stores', href: '/masters/stores' },
+        { label: 'Employees', href: '/masters/employees' },
+      ],
+    },
+    {
+      icon: Truck,
+      label: 'Purchase',
+      submenu: [
+        { label: 'Purchase Orders', href: '/app/purchase/orders' },
+        { label: 'GRN', href: '/app/purchase/grn' },
+        { label: 'Returns', href: '/app/purchase/returns' },
+        { label: 'Payments', href: '/app/purchase/payments' },
+      ],
+    },
+    {
+      icon: ShoppingCart,
+      label: 'Sales',
+      submenu: [
+        { label: 'Sales Retail', href: '/app/sales/retail' },
+        { label: 'Sales Wholesale', href: '/app/sales/wholesale' },
+        { label: 'Returns', href: '/app/sales/returns' },
+        { label: 'Payments', href: '/app/sales/payments' },
+      ],
+    },
+    {
+      icon: Warehouse,
+      label: 'Stock',
+      submenu: [
+        { label: 'Stock Report', href: '/app/stock/report' },
+        { label: 'Transfers', href: '/app/stock/transfers' },
+        { label: 'Adjustments', href: '/app/stock/adjustments' },
+      ],
+    },
+    {
+      icon: FileText,
+      label: 'Reports',
+      submenu: [
+        { label: 'Sales Report', href: '/app/reports/sales' },
+        { label: 'Stock Report', href: '/app/reports/stock' },
+        { label: 'Receivables', href: '/app/reports/receivables' },
+        { label: 'Payables', href: '/app/reports/payables' },
+      ],
+    },
+    {
+      icon: Settings,
+      label: 'Settings',
+      submenu: [
+        { label: 'Company', href: '/app/settings/company' },
+        { label: 'Users', href: '/app/settings/users' },
+        { label: 'Backup', href: '/app/settings/backup' },
+      ],
+    },
+  ]
 
   return (
     <>
+      {/* Mobile Toggle */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="fixed top-20 left-4 z-40 md:hidden bg-blue-600 text-white p-2 rounded-lg"
+      >
+        {isOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
+
       {/* Sidebar */}
       <aside
-        className={`${
+        className={`fixed left-0 top-16 h-[calc(100vh-64px)] bg-gray-900 text-white transition-all duration-300 ${
           isOpen ? 'w-64' : 'w-20'
-        } bg-gray-900 text-white transition-all duration-300 flex flex-col h-screen`}
+        } overflow-y-auto z-30`}
       >
-        {/* Header */}
-        <div className="p-4 border-b border-gray-800 flex items-center justify-between">
-          {isOpen && <h1 className="font-bold text-lg">HWMS</h1>}
-          <button
-            onClick={onToggle}
-            className="p-2 hover:bg-gray-800 rounded-lg"
-            aria-label="Toggle sidebar"
-          >
-            <ChevronLeft size={20} />
-          </button>
-        </div>
+        <div className="p-4 space-y-2">
+          {menuItems.map((item) => {
+            const hasSubmenu = item.submenu.length > 0
+            const isExpanded = expandedMenu === item.label
+            const isItemActive = hasSubmenu
+              ? item.submenu.some(sub => isActive(sub.href))
+              : isActive(item.href)
 
-        {/* Navigation */}
-        <nav className="flex-1 overflow-y-auto p-4 space-y-6">
-          {menuItems.map((section) => (
-            <div key={section.section}>
-              {isOpen && (
-                <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3">
-                  {section.section}
-                </p>
-              )}
-              <div className="space-y-1">
-                {section.items.map((item) => {
-                  const Icon = item.icon
-                  const isActive = pathname.startsWith(item.href)
+            return (
+              <div key={item.label}>
+                {hasSubmenu ? (
+                  <button
+                    onClick={() =>
+                      setExpandedMenu(isExpanded ? null : item.label)
+                    }
+                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition ${
+                      isItemActive
+                        ? 'bg-blue-600 text-white'
+                        : 'text-gray-300 hover:bg-gray-800'
+                    }`}
+                  >
+                    <item.icon size={20} className="flex-shrink-0" />
+                    {isOpen && (
+                      <>
+                        <span className="flex-1 text-left text-sm font-medium">
+                          {item.label}
+                        </span>
+                        <ChevronDown
+                          size={16}
+                          className={`transition ${isExpanded ? 'rotate-180' : ''}`}
+                        />
+                      </>
+                    )}
+                  </button>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg transition ${
+                      isItemActive
+                        ? 'bg-blue-600 text-white'
+                        : 'text-gray-300 hover:bg-gray-800'
+                    }`}
+                  >
+                    <item.icon size={20} className="flex-shrink-0" />
+                    {isOpen && (
+                      <span className="text-sm font-medium">{item.label}</span>
+                    )}
+                  </Link>
+                )}
 
-                  return (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className={`flex items-center gap-3 px-4 py-2 rounded-lg transition ${
-                        isActive
-                          ? 'bg-blue-600 text-white'
-                          : 'text-gray-300 hover:bg-gray-800'
-                      }`}
-                      title={item.label}
-                    >
-                      <Icon size={20} />
-                      {isOpen && <span className="text-sm">{item.label}</span>}
-                    </Link>
-                  )
-                })}
+                {/* Submenu */}
+                {hasSubmenu && isExpanded && isOpen && (
+                  <div className="mt-1 space-y-1 pl-4">
+                    {item.submenu.map((subitem) => (
+                      <Link
+                        key={subitem.href}
+                        href={subitem.href}
+                        className={`flex items-center gap-3 px-4 py-2 rounded-lg text-sm transition ${
+                          isActive(subitem.href)
+                            ? 'bg-blue-600 text-white'
+                            : 'text-gray-400 hover:text-gray-200 hover:bg-gray-800'
+                        }`}
+                      >
+                        <div className="w-1.5 h-1.5 bg-current rounded-full"></div>
+                        {subitem.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </div>
-            </div>
-          ))}
-        </nav>
-
-        {/* Footer */}
-        <div className="p-4 border-t border-gray-800 space-y-2">
-          <Link
-            href="/app/settings"
-            className="flex items-center gap-3 px-4 py-2 rounded-lg text-gray-300 hover:bg-gray-800 transition"
-            title="Settings"
-          >
-            <Settings size={20} />
-            {isOpen && <span className="text-sm">Settings</span>}
-          </Link>
+            )
+          })}
         </div>
       </aside>
+
+      {/* Main Content Wrapper */}
+      <div className={`transition-all duration-300 ${isOpen ? 'md:ml-64' : 'md:ml-20'}`} />
     </>
   )
 }

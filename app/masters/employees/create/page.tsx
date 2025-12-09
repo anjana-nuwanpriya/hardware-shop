@@ -42,7 +42,7 @@ export default function CreateEmployeePage() {
         return
       }
 
-      router.push('/app/masters/employees')
+      router.push('/masters/employees')
       router.refresh()
     } catch (err) {
       setError('An error occurred. Please try again.')
@@ -54,7 +54,7 @@ export default function CreateEmployeePage() {
   return (
     <div className="space-y-6">
       <Link
-        href="/app/masters/employees"
+        href="/masters/employees"
         className="flex items-center gap-2 text-blue-600 hover:text-blue-900"
       >
         <ArrowLeft size={20} /> Back
@@ -132,7 +132,7 @@ export default function CreateEmployeePage() {
               {isLoading ? 'Creating...' : 'Create Employee'}
             </button>
             <Link
-              href="/app/masters/employees"
+              href="/masters/employees"
               className="border border-gray-300 px-6 py-2 rounded-lg hover:bg-gray-50 font-medium"
             >
               Cancel

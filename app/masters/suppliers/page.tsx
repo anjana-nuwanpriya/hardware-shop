@@ -79,7 +79,7 @@ export default function SuppliersPage() {
           <p className="text-gray-600 mt-1">Manage your supplier list</p>
         </div>
         <Link
-          href="/app/masters/suppliers/create"
+          href="/masters/suppliers/create"
           className="bg-blue-600 text-white px-4 py-3 rounded-lg flex items-center gap-2 hover:bg-blue-700 transition font-medium"
         >
           <Plus size={20} /> Add Supplier
@@ -124,7 +124,7 @@ export default function SuppliersPage() {
             </p>
             {!searchTerm && (
               <Link
-                href="/app/masters/suppliers/create"
+                href="/masters/suppliers/create"
                 className="text-blue-600 hover:text-blue-900 mt-2 inline-block"
               >
                 Add the first supplier →
@@ -171,7 +171,7 @@ export default function SuppliersPage() {
                   </td>
                   <td className="px-6 py-4 flex gap-2">
                     <Link
-                      href={`/app/masters/suppliers/${supplier.id}/edit`}
+                      href={`/masters/suppliers/${supplier.id}/edit`}
                       className="text-blue-600 hover:text-blue-900 hover:bg-blue-50 px-3 py-1 rounded transition flex items-center gap-1"
                     >
                       <Edit2 size={16} /> Edit
